@@ -7,7 +7,7 @@ function Header() {
   return (
     <Navbar expand="lg">
       <Container>
-        <Navbar.Brand href="/">Sports Articles</Navbar.Brand>
+        <Navbar.Brand href="/">News For Thought</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
