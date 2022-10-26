@@ -53,7 +53,7 @@ function Articles() {
         className="sort-button" 
         variant="outline-dark" 
         value='All' 
-        onClick={(e) => changeCategory(e.target.value)}>
+        onClick={(e) => setFilter(null)}>
               ALL
         </Button>
         <Button 
