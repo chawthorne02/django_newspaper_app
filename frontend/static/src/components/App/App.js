@@ -6,7 +6,13 @@ import LoginForm from "../Login/LoginForm";
 import RegistrationForm from "../Registration/RegistrationForm";
 import ProfileForm from "../Profile/ProfileForm";
 import Articles from "../Articles/Articles";
-import Header from "../Header/Header";
+// import Header from "../Header/Header";
+import AuthorArticleList from "../Articles/AuthorArticleList";
+import UserDetailView from "../Articles/UserDetailView";
+import CreateArticle from "../Articles/AuthorCreateArticle";
+import AdminArticleList from "../Articles/AdminArticleList";
+import AdminReview from "../Articles/AdminArticleReview";
+import Layout from "../Layout/Layout";
 
 
 
@@ -67,10 +73,18 @@ function App() {
 
   return (
     <div className="App">
-      <Header superState={superState} setSuperState={setSuperState} logoutUser={logoutUser} />
       <BrowserRouter>
         <Routes>
-          <Route path="/">
+          <Route
+            path="/"
+            element={
+              <Layout
+                superState={superState}
+                setSuperState={setSuperState}
+                logoutUser={logoutUser}
+              />
+            }
+          >
             <Route index element={<Articles />} />
             <Route
               path="login"
@@ -80,11 +94,17 @@ function App() {
               path="register"
               element={<RegistrationForm superState={superState} setSuperState={setSuperState} />}
             />
-            <Route path="profile" element={<ProfileForm />} /></Route>
-          </Routes>
-          </BrowserRouter>
-            
+            <Route path="profile" element={<ProfileForm />} />
+            <Route path="create" element={<CreateArticle />} />
+            <Route path="article/:id/*" element={<UserDetailView />} />
+            <Route path="articles/user/*" element={<AuthorArticleList />} />
+            <Route path="articles/admin" element={<AdminArticleList />} />
+            <Route path="articles/admin/:id/*" element={<AdminReview />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
+    
   );
 }
 
