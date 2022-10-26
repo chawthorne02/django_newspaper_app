@@ -1,8 +1,9 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from .models import Article
 from .serializers import ArticleSerializer, UserArticleSerializer
 from .permissions import IsAuthorOrReadOnly
+from django.db.models import Q # ( Q object encapsulates a SQL expression in a Python object that can be used in database-related operations. Using Q objects we can make complex queries with less and simple code.)
 
 from articles import models
 from . import models
@@ -33,3 +34,17 @@ class ArticleDetailAPIView(generics.RetrieveAPIView): #  GET request for a speci
     # Retrieve is a get request
     # Update is a put request
     # Destroy is a delete request
+
+
+
+
+class AdminArticleListAPIView(generics.ListCreateAPIView):
+    permission_classes = (IsAdminUser,)
+    queryset = models.Article.objects.order_by('-created_at')
+    serializer_class = ArticleSerializer
+
+    def get_queryset(self):
+        return models.Article.objects.filter(Q(status='Published') | Q(status='Submitted') | Q(status='Archived'))
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)  

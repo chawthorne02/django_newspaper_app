@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import LoginForm from "../Login/LoginForm";
 import RegistrationForm from "../Registration/RegistrationForm";
 import ProfileForm from "../Profile/ProfileForm";

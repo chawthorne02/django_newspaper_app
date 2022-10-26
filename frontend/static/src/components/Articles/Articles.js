@@ -39,7 +39,9 @@ function Articles() {
 
   const changeCategory = (value) => {
     setFilter(value);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Window.scrollTo() scrolls to a particular set of coordinates in the document.
+
+
   };
 
   useEffect(() => {
