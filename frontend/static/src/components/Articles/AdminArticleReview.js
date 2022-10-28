@@ -32,7 +32,7 @@ function AdminReview() {
     e.preventDefault();
     const formData = new FormData();
 
-    formData.append("status", e.target.value);
+    formData.append("phase", e.target.value);
 
     const options = {
       method: "PATCH",
@@ -59,7 +59,7 @@ function AdminReview() {
           <img className="highlight-img" src={state.image} alt="" />
           <h2 className="highlight-title">{state.title}</h2>
           <p className="highlight-body">{state.body}</p>
-          {state.status === "Submitted" && (
+          {state.phase === "Submitted" && (
             <>
               <Button
                 className="form-button-pairs"
@@ -81,7 +81,7 @@ function AdminReview() {
               </Button>
             </>
           )}
-          {state.status === "Published" && (
+          {state.phase === "Published" && (
             <>
               <Button
                 className="form-button-pairs"
@@ -94,7 +94,7 @@ function AdminReview() {
               </Button>
             </>
           )}
-          {state.status === "Archived" && (
+          {state.phase === "Archived" && (
             <>
               <Button
                 className="form-button-pairs"

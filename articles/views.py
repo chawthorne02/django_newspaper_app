@@ -1,3 +1,4 @@
+from cmath import phase
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from .models import Article
@@ -10,10 +11,13 @@ from . import models
 from .permissions import IsAuthorOrReadOnly
 
 
-class ArticleListAPIView(generics.ListAPIView):  #GET request for all published articles
+class ArticleListAPIView(generics.ListCreateAPIView):  #GET request for all published articles
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = models.Article.objects.filter(phase="Published")
     serializer_class = ArticleSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 
 class UserArticleListCreateAPIView(generics.ListCreateAPIView):
@@ -22,12 +26,13 @@ class UserArticleListCreateAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         return models.Article.objects.filter(author=self.request.user)
 
-    
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
+    
 
-class ArticleDetailAPIView(generics.RetrieveAPIView): #  GET request for a specific object
+
+class ArticleDetailAPIView(generics.RetrieveUpdateDestroyAPIView): #  GET request for a specific object
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
@@ -44,7 +49,7 @@ class AdminArticleListAPIView(generics.ListCreateAPIView):
     serializer_class = ArticleSerializer
 
     def get_queryset(self):
-        return models.Article.objects.filter(Q(status='Published') | Q(status='Submitted') | Q(status='Archived'))
+        return models.Article.objects.filter(Q(phase='Published') | Q(phase='Submitted') | Q(phase='Archived'))
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)  

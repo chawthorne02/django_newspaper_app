@@ -1,11 +1,11 @@
 import { useState, useCallback, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import AuthorArticle from "./AuthorArticleDisplay";
+import AuthorArticleDisplay from "./AuthorArticleDisplay";
 
 
 function AuthorArticleList() {
   const [userArticles, setUserArticles] = useState([]);
-  const [filter, setFilter] = useState("Draft");
+  const [filter, setFilter] = useState("Drafts");
 
   const handleError = (err) => {
     console.warn(err);
@@ -26,8 +26,9 @@ function AuthorArticleList() {
   }, [getUserArticles]);
 
   const filteredArticles = userArticles
-    .filter((article) => (filter ? article.status === filter : article))
-    .map((article) => <AuthorArticle key={article.id} article={article} />);
+    .filter((article) => (filter ? article.phase === filter : article))
+    .map((article) => <AuthorArticleDisplay key={article.id} article={article} />);
+    console.log(filteredArticles)
 
   const changeCategory = (value) => {
     setFilter(value);
@@ -41,7 +42,7 @@ function AuthorArticleList() {
           <Button
             className="sort-button"
             variant="primary"
-            value="Draft"
+            value="Drafts"
             onClick={(e) => changeCategory(e.target.value)}
           >
             Draft

@@ -8,7 +8,8 @@ class ArticleSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Article
-        exclude = ('phase', 'author')
+        fields = "__all__"
+        # exclude = ('author')
 
 
 class UserArticleSerializer(serializers.ModelSerializer):

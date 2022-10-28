@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 function Articles() {
   const [articles, setArticles] = useState([]);
   const [activeArticle, setActiveArticle] = useState();
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState();
 
   const handleError = (err) => {
     console.warn(err);

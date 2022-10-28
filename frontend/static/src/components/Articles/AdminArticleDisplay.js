@@ -7,7 +7,7 @@ function AdminArticleDisplay({ article }) {
         <div className="article-info">
           <h3 className="aside-title">{article.title}</h3>
           <span>By {article.author_name} | </span>
-          <Badge bg="warning">{article.status}</Badge>
+          <Badge bg="warning">{article.phase}</Badge>
           <div className="view-button">
             <Link className="view-link" to={`/articles/admin/${article.id}`}>
               View Article

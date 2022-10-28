@@ -39,7 +39,8 @@ function CreateArticle() {
         formData.append('title', state.title);
         formData.append('body', state.body);
         formData.append('category', state.category);
-        formData.append('status', e.target.value);
+        formData.append('phase', e.target.value);
+        formData.append('author', 1)
 
         const options = {
             method: 'POST',
@@ -49,7 +50,7 @@ function CreateArticle() {
             body: formData,
         };
 
-        const response = await fetch('/api/v1/articles/', options).catch(handleError);
+        const response = await fetch('/api/v1/articles/user/', options).catch(handleError);
         if (!response.ok) {
             throw new Error("Network response was not OK");
         } else {
@@ -101,10 +102,10 @@ function CreateArticle() {
             <Form.Group className="mb-3" controlId="category">
               <Form.Label>Choose Category</Form.Label>
               <Form.Select name="category" value={state.category} onChange={handleInput}>
-                <option value="Football">Sports</option>
-                <option value="Hockey">Gaming</option>
-                <option value="Baseball">Entertainment</option>
-                <option value="Basketball">Travel</option>
+                <option value="Sports">Sports</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Travel">Travel</option>
               </Form.Select>
             </Form.Group>
             <div className="form-footer">
@@ -112,7 +113,7 @@ function CreateArticle() {
                 className="create-buttons"
                 variant="primary"
                 type="submit"
-                value="Draft"
+                value="Drafts"
                 onClick={handleSubmit}
               >
                 Save

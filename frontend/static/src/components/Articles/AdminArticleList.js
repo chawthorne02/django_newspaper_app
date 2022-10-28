@@ -25,7 +25,7 @@ function AdminArticleList() {
   }, [getAdminArticles]);
 
   const articleList = adminArticles
-    .filter((article) => (filter ? article.status === filter : article))
+    .filter((article) => (filter ? article.phase === filter : article))
     .map((article) => <AdminArticleDisplay key={article.id} article={article} />);
 
   const changeCategory = (value) => {

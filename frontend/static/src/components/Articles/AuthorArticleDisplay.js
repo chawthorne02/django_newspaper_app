@@ -8,7 +8,7 @@ function AuthorArticleDisplay({ article }) {
       <div className="article-info">
         <h3 className="aside-title">{article.title}</h3>
         <span>By {article.author_name} | </span>
-        <Badge bg="primary">{article.status}</Badge>
+        <Badge bg="primary">{article.phase}</Badge>
         <div className="view-button">
           <Link className="view-link" to={`/article/${article.id}`}>
             View Article

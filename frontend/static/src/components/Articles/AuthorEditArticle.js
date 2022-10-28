@@ -131,10 +131,10 @@ function EditArticle({ state }) {
         <Form.Group className="mb-3" controlId="category">
           <Form.Label>Choose Category</Form.Label>
           <Form.Select name="category" value={article.category} onChange={handleInput}> 
-                <option value="Football">Football</option>
-                <option value="Hockey">Hockey</option>
-                <option value="Baseball">Baseball</option>
-                <option value="Basketball">Basketball</option>
+                <option value="Sports">Sports</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Travel">Travel</option>
           </Form.Select>
         </Form.Group>
         <div className="edit-footer">
